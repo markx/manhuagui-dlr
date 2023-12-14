@@ -171,7 +171,7 @@ class manhuagui_comic:
             # convert webp to jpg
             if self._convert:
                 im = Image.open(os.path.join(rawfolder, filename))
-                im.save(os.path.join(jpgfolder, filename + '.jpg'), 'jpeg')
+                im.save(os.path.join(jpgfolder, filename + '.jpg'), 'jpeg', subsampling=0, quality=95)
 
             # return when success
             return
@@ -223,7 +223,7 @@ class manhuagui_comic:
             page_url = self._tunnel + path + filename
             yield (page_url, filename, length, i) # report progress
             # download image
-            if not self._download_page(page_url, e, m, rawfolder, jpgfolder, f'{i}_{filename}'): # return True means file skiped
+            if not self._download_page(page_url, e, m, rawfolder, jpgfolder, f'{i:03}_{filename}'): # return True means file skiped
                 time.sleep(self._page_delay) # delay when file is not skiped
 
     
